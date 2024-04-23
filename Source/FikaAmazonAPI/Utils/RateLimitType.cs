@@ -82,8 +82,19 @@
 
         FBAInboundEligibility_GetItemEligibilityPreview,
 
-        FulFillmentInbound_GetInboundGuidance,
-        FulFillmentInbound_CreateInboundShipmentPlan,
+        FulFillmentInbound_GetListInboundPlans,
+        FulFillmentInbound_CreateInboundPlan,
+        FulFillmentInbound_GetInboundPlan,
+        FulFillmentInbound_ListInboundPlanBoxesResponse,
+        FulFillmentInbound_CancelInboundPlan,
+        FulFillmentInbound_ListInboundPlanItems,
+        FulFillmentInbound_SetPackingInformation,
+        FulFillmentInbound_ListPackingOptions,
+        FulFillmentInbound_GeneratePackingOptions,
+        FulFillmentInbound_ConfirmPackingOption,
+
+        
+
         FulFillmentInbound_UpdateInboundShipment,
         FulFillmentInbound_CreateInboundShipment,
         FulFillmentInbound_GetPreorderInfo,

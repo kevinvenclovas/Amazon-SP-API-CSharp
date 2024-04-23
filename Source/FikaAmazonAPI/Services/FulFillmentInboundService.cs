@@ -15,30 +15,115 @@ namespace FikaAmazonAPI.Services
 
         }
 
-        public GetInboundGuidanceResult GetInboundGuidance(ParameterGetInboundGuidance parameterGetInboundGuidance) =>
-            Task.Run(() => GetInboundGuidanceAsync(parameterGetInboundGuidance)).ConfigureAwait(false).GetAwaiter().GetResult();
-        public async Task<GetInboundGuidanceResult> GetInboundGuidanceAsync(ParameterGetInboundGuidance parameterGetInboundGuidance, CancellationToken cancellationToken = default)
-        {
-            var parameter = parameterGetInboundGuidance.getParameters();
-            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.GetInboundGuidance, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+        public ListInboundPlansResponse GetListInboundPlans(ParameterGetListInboundPlans parameterGetListInboundPlans) =>
+            Task.Run(() => GetListInboundPlansAsync(parameterGetListInboundPlans)).ConfigureAwait(false).GetAwaiter().GetResult();
 
-            var response = await ExecuteRequestAsync<GetInboundGuidanceResponse>(RateLimitType.FulFillmentInbound_GetInboundGuidance, cancellationToken);
-            if (response != null && response.Payload != null)
-                return response.Payload;
-            return null;
+        public async Task<ListInboundPlansResponse> GetListInboundPlansAsync(ParameterGetListInboundPlans parameterGetListInboundPlans, CancellationToken cancellationToken = default)
+        {
+            var parameter = parameterGetListInboundPlans.getParameters();
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.GetListInboundPlans, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+
+            return await ExecuteRequestAsync<ListInboundPlansResponse>(RateLimitType.FulFillmentInbound_GetListInboundPlans, cancellationToken);
         }
 
-        public CreateInboundShipmentPlanResult CreateInboundShipmentPlan(CreateInboundShipmentPlanRequest createInboundShipmentPlanRequest) =>
-            Task.Run(() => CreateInboundShipmentPlanAsync(createInboundShipmentPlanRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
-        public async Task<CreateInboundShipmentPlanResult> CreateInboundShipmentPlanAsync(CreateInboundShipmentPlanRequest createInboundShipmentPlanRequest, CancellationToken cancellationToken = default)
-        {
-            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.CreateInboundShipmentPlan, RestSharp.Method.Post, postJsonObj: createInboundShipmentPlanRequest, cancellationToken: cancellationToken);
 
-            var response = await ExecuteRequestAsync<CreateInboundShipmentPlanResponse>(RateLimitType.FulFillmentInbound_CreateInboundShipmentPlan, cancellationToken);
-            if (response != null && response.Payload != null)
-                return response.Payload;
-            return null;
+        public CreateInboundPlanResponse CreateInboundPlan(CreateInboundPlanRequest createInboundPlanRequest) =>
+           Task.Run(() => CreateInboundPlanAsync(createInboundPlanRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<CreateInboundPlanResponse> CreateInboundPlanAsync(CreateInboundPlanRequest createInboundPlanRequest, CancellationToken cancellationToken = default)
+        {
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.CreateInboundPlan, RestSharp.Method.Post, postJsonObj: createInboundPlanRequest, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<CreateInboundPlanResponse>(RateLimitType.FulFillmentInbound_CreateInboundPlan, cancellationToken);
         }
+
+
+        public InboundPlan GetInboundPlan(string inboundPlanId) =>
+           Task.Run(() => GetInboundPlanAsync(inboundPlanId)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<InboundPlan> GetInboundPlanAsync(string inboundPlanId, CancellationToken cancellationToken = default)
+        {
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.GetInboundPlan(inboundPlanId), RestSharp.Method.Get, null, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<InboundPlan>(RateLimitType.FulFillmentInbound_GetInboundPlan, cancellationToken);
+        }
+
+
+        public ListInboundPlanBoxesResponse ListInboundPlanBoxes(ParameterListInboundPlan parameterListInboundPlan) =>
+           Task.Run(() => ListInboundPlanBoxesAsync(parameterListInboundPlan)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<ListInboundPlanBoxesResponse> ListInboundPlanBoxesAsync(ParameterListInboundPlan parameterListInboundPlan, CancellationToken cancellationToken = default)
+        {
+            var parameter = parameterListInboundPlan.getParameters();
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.ListInboundPlanBoxes(parameterListInboundPlan.InboundPlanId), RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<ListInboundPlanBoxesResponse>(RateLimitType.FulFillmentInbound_ListInboundPlanBoxesResponse, cancellationToken);
+        }
+
+        public CancelInboundPlanResponse CancelInboundPlan(string inboundPlanId) =>
+         Task.Run(() => CancelInboundPlanAsync(inboundPlanId)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<CancelInboundPlanResponse> CancelInboundPlanAsync(string inboundPlanId, CancellationToken cancellationToken = default)
+        {
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.CancelInboundPlan(inboundPlanId), RestSharp.Method.Put, null, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<CancelInboundPlanResponse>(RateLimitType.FulFillmentInbound_CancelInboundPlan, cancellationToken);
+        }
+
+        public ListInboundPlanItemsResponse ListInboundPlanItems(ParameterListInboundPlan parameterListInboundPlan) =>
+        Task.Run(() => ListInboundPlanItemsAsync(parameterListInboundPlan)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<ListInboundPlanItemsResponse> ListInboundPlanItemsAsync(ParameterListInboundPlan parameterListInboundPlan, CancellationToken cancellationToken = default)
+        {
+            var parameter = parameterListInboundPlan.getParameters();
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.ListInboundPlanItems(parameterListInboundPlan.InboundPlanId), RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<ListInboundPlanItemsResponse>(RateLimitType.FulFillmentInbound_ListInboundPlanItems, cancellationToken);
+        }
+
+
+        public SetPackingInformationResponse SetPackingInformation(string inboundPlanId, SetPackingInformationRequest setPackingInformationRequest) =>
+        Task.Run(() => SetPackingInformationAsync(inboundPlanId, setPackingInformationRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<SetPackingInformationResponse> SetPackingInformationAsync(string inboundPlanId, SetPackingInformationRequest setPackingInformationRequest, CancellationToken cancellationToken = default)
+        {
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.SetPackingInformation(inboundPlanId), RestSharp.Method.Post, postJsonObj: setPackingInformationRequest, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<SetPackingInformationResponse>(RateLimitType.FulFillmentInbound_CreateInboundPlan, cancellationToken);
+        }
+
+
+        public ListPackingOptionsResponse ListPackingOptions(ParameterListInboundPlan parameterListInboundPlan) =>
+        Task.Run(() => ListPackingOptionsAsync(parameterListInboundPlan)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<ListPackingOptionsResponse> ListPackingOptionsAsync(ParameterListInboundPlan parameterListInboundPlan, CancellationToken cancellationToken = default)
+        {
+            var parameter = parameterListInboundPlan.getParameters();
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.ListPackingOptions(parameterListInboundPlan.InboundPlanId), RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<ListPackingOptionsResponse>(RateLimitType.FulFillmentInbound_ListPackingOptions, cancellationToken);
+        }
+
+
+        public GeneratePackingOptionsResponse GeneratePackingOptions(string inboundPlanId) =>
+        Task.Run(() => GeneratePackingOptionsAsync(inboundPlanId)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<GeneratePackingOptionsResponse> GeneratePackingOptionsAsync(string inboundPlanId, CancellationToken cancellationToken = default)
+        {
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.GeneratePackingOptions(inboundPlanId), RestSharp.Method.Post, null, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<GeneratePackingOptionsResponse>(RateLimitType.FulFillmentInbound_GeneratePackingOptions, cancellationToken);
+        }
+
+
+        public ConfirmPackingOptionResponse ConfirmPackingOption(ParameterConfirmPackingOption parameterConfirmPackingOption) =>
+        Task.Run(() => ConfirmPackingOptionAsync(parameterConfirmPackingOption)).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        public async Task<ConfirmPackingOptionResponse> ConfirmPackingOptionAsync(ParameterConfirmPackingOption parameterConfirmPackingOption, CancellationToken cancellationToken = default)
+        {
+            var parameter = parameterConfirmPackingOption.getParameters();
+            await CreateAuthorizedRequestAsync(FulFillmentInboundApiUrls.ConfirmPackingOption(parameterConfirmPackingOption.InboundPlanId,parameterConfirmPackingOption.PackingOptionId), RestSharp.Method.Post, null, cancellationToken: cancellationToken);
+            return await ExecuteRequestAsync<ConfirmPackingOptionResponse>(RateLimitType.FulFillmentInbound_ConfirmPackingOption, cancellationToken);
+        }
+
+
+
+
+
+
+
 
         public InboundShipmentResult UpdateInboundShipment(string shipmentId, InboundShipmentRequest inboundShipmentRequest) =>
             Task.Run(() => UpdateInboundShipmentAsync(shipmentId, inboundShipmentRequest)).ConfigureAwait(false).GetAwaiter().GetResult();

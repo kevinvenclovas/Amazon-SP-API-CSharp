@@ -63,5 +63,8 @@
     <OpenApiReference Include="OpenAPIs\catalogItems_2022-04-01.json" CodeGenerator="NSwagCSharp" Namespace="FikaAmazonAPI.AmazonSpApiSDK.Models.CatalogItems.V20220401" ClassName="CatalogItems">
       <SourceUri>https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/catalog-items-api-model/catalogItems_2022-04-01.json</SourceUri>
     </OpenApiReference>
+    <OpenApiReference Include="OpenAPIs\fulfillmentInboundv2024-03-20.json" CodeGenerator="NSwagCSharp" Namespace="FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound" ClassName="FulfillmentInbound">
+      <SourceUri>https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/fulfillment-inbound-api-model/fulfillmentInboundv2024-03-20.json</SourceUri>
+    </OpenApiReference>
   </ItemGroup>
 </Project>

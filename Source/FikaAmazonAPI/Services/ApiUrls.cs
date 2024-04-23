@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound;
+using FikaAmazonAPI.AmazonSpApiSDK.Models.Shipping;
+using System;
 
 namespace FikaAmazonAPI.AmazonSpApiSDK.Services
 {
@@ -86,15 +88,33 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Services
         }
         protected class FulFillmentInboundApiUrls
         {
-            private readonly static string _resourceBaseUrl = "/fba/inbound/v0";
+            private readonly static string _resourceBaseUrl = "/inbound/fba/2024-03-20";
+
+            public static string GetListInboundPlans
+            {
+                get => $"{_resourceBaseUrl}/inboundPlans";
+            }
+            public static string CreateInboundPlan
+            {
+                get => $"{_resourceBaseUrl}/inboundPlans";
+            }
+
+            public static string GetInboundPlan(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}";
+            public static string ListInboundPlanBoxes(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/boxes";
+            public static string CancelInboundPlan(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/cancellation";
+            public static string ListInboundPlanItems(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/items";
+            public static string SetPackingInformation(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/packingInformation";
+            public static string ListPackingOptions(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/packingOptions";
+            public static string GeneratePackingOptions(string inboundPlanId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/packingOptions";
+            public static string ConfirmPackingOption(string inboundPlanId, string packingOptionId) => $"{_resourceBaseUrl}/inboundPlans/{inboundPlanId}/packingOptions/{packingOptionId}/confirmation";
+
+
+
             public static string GetInboundGuidance
             {
                 get => $"{_resourceBaseUrl}/itemsGuidance";
             }
-            public static string CreateInboundShipmentPlan
-            {
-                get => $"{_resourceBaseUrl}/plans";
-            }
+         
             public static string UpdateInboundShipment(string shipmentId) => $"{_resourceBaseUrl}/shipments/{shipmentId}";
             public static string CreateInboundShipment(string shipmentId) => $"{_resourceBaseUrl}/shipments/{shipmentId}";
             public static string GetPreorderInfo(string shipmentId) => $"{_resourceBaseUrl}/shipments/{shipmentId}/preorder";
