@@ -35,13 +35,22 @@
     <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.100.52" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.100.52" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="110.2.0" />
     <PackageReference Include="StandardSocketsHttpHandler" Version="2.2.0.4" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
         <None Include="..\..\Others\icon\icon.jpg">
@@ -50,4 +59,9 @@
         </None>
         <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
+  <ItemGroup>
+    <OpenApiReference Include="OpenAPIs\catalogItems_2022-04-01.json" CodeGenerator="NSwagCSharp" Namespace="FikaAmazonAPI.AmazonSpApiSDK.Models.CatalogItems.V20220401" ClassName="CatalogItems">
+      <SourceUri>https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/catalog-items-api-model/catalogItems_2022-04-01.json</SourceUri>
+    </OpenApiReference>
+  </ItemGroup>
 </Project>
