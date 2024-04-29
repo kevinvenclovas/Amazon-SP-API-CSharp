@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <PackageId>CSharpAmazonSpAPI</PackageId>
     <Authors>Tareq Abuzuhri</Authors>
@@ -14,23 +13,22 @@
     <PackageProjectUrl>https://github.com/abuzuhri/Amazon-SP-API-CSharp</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/abuzuhri/Amazon-SP-API-CSharp</RepositoryUrl>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<PackageTags>Amazon SP-API MWS Amazon-SP-API Amazon Selling</PackageTags>
-	<PackageReleaseNotes></PackageReleaseNotes>
-	<NeutralLanguage>en-US</NeutralLanguage>
-	<Description>.Net C# library for the new Amazon Selling Partner API</Description>
-	<RepositoryType>git</RepositoryType>
-	<PackageIcon>icon.jpg</PackageIcon>
-	<TargetFramework>netstandard2.0</TargetFramework>
-	<UserSecretsId>2ff602c6-a213-4df0-88f2-cf1a1df95fbc</UserSecretsId>
-    
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Amazon SP-API MWS Amazon-SP-API Amazon Selling</PackageTags>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Description>.Net C# library for the new Amazon Selling Partner API</Description>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.jpg</PackageIcon>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <UserSecretsId>2ff602c6-a213-4df0-88f2-cf1a1df95fbc</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ConstructFeed\xsd\**" />
     <EmbeddedResource Remove="ConstructFeed\xsd\**" />
     <None Remove="ConstructFeed\xsd\**" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.100.52" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.100.52" />
@@ -53,18 +51,20 @@
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-        <None Include="..\..\Others\icon\icon.jpg">
-          <Pack>True</Pack>
-          <PackagePath>\</PackagePath>
-        </None>
-        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
-    </ItemGroup>
+    <None Include="..\..\Others\icon\icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
   <ItemGroup>
     <OpenApiReference Include="OpenAPIs\catalogItems_2022-04-01.json" CodeGenerator="NSwagCSharp" Namespace="FikaAmazonAPI.AmazonSpApiSDK.Models.CatalogItems.V20220401" ClassName="CatalogItems">
       <SourceUri>https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/catalog-items-api-model/catalogItems_2022-04-01.json</SourceUri>
+      <Options>/GenerateClientClasses:false</Options>
     </OpenApiReference>
     <OpenApiReference Include="OpenAPIs\fulfillmentInboundv2024-03-20.json" CodeGenerator="NSwagCSharp" Namespace="FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound" ClassName="FulfillmentInbound">
       <SourceUri>https://raw.githubusercontent.com/amzn/selling-partner-api-models/main/models/fulfillment-inbound-api-model/fulfillmentInboundv2024-03-20.json</SourceUri>
+      <Options>/GenerateClientClasses:false</Options>
     </OpenApiReference>
   </ItemGroup>
 </Project>
