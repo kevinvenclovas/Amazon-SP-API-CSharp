@@ -1,11 +1,9 @@
 ﻿using FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound;
-using FikaAmazonAPI.Search;
 
 namespace FikaAmazonAPI.Parameter.FulFillmentInbound
 {
-    public class ParameterGetListInboundPlans : ParameterBased
+    public class ParameterGetListInboundPlans : PaginationParameter
     {
-        public int? PageSize { get; set; }
         public string PaginationToken { get; set; }
         public Status? Status { get; set; }
         public SortBy? SortBy { get; set; }
